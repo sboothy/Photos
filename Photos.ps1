@@ -7,9 +7,6 @@ $File = Import-CSV -Path "C:\Temp\Pics.csv"
 $File | ConvertFrom-Csv
 
 forEach ($Pic in $File){
-    #Put pic on LochNET
-    Copy-Item $Pic.FilePath -Destination "\\lochnet.hwlochner.com@SSL\DavWWWRoot\Directory Images\Employees"
-
     #Put pic on O365
     Set-UserPhoto -identity $Pic.Email -PictureData ([System.IO.File]::ReadAllBytes($Pic.FilePath)) -confirm:$false
 
@@ -23,5 +20,3 @@ forEach ($Pic in $File){
 }
 
 #Remove-UserPhoto -identity sbooth@hwlochner.com
-
-#/Directory Images/Employees/
